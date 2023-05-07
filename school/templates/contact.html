@@ -1,0 +1,136 @@
+{% include "base.html" %}
+{%load static%}
+
+<form method="post">
+  {% csrf_token %}
+<div class="wrapper">
+  <div class="container main">
+      <div class="row" id="reg-row">
+          <div class="col-md-6 side-image">
+              <!-------Image-------->
+             
+              <div class="text1">
+                  
+              </div>
+          </div>
+          <div class="col-md-6 right">
+              <div class="input-box">
+                  <header>Register Now</header>
+                  
+                    {% for message in messages %}
+                    <p class="text-danger">{{message}}</p>
+                    {% endfor %}
+                  
+                  <div class="input-field">
+                      <input type="text" id="" class="input" placeholder="First name" name="first_name" autofocus>
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Last name" type="text" name="last_name" class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Phone number" type="number" name="phone" class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="email:abc@gmail.com" type="email" name="email" class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Date of birth" type="date" name="date_of_birth" class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <select name="course" class="input">
+                          <option>Select your course </option>
+                          <option>Foundation level</option>
+                          <option>Advanced/Master level</option>
+                      </select>
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder=" Highest Qualification" type="text" name="qualification" class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Marks in percentage (optional) " type="number" name="mark1"
+                          class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Address" type="text" name="address" class="input">
+
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Parent name" type="text" name="parent_name" class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Parent number" type="number" name="parent_number" class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input placeholder="Parent occupation" type="text" name="parent_occupation" required
+                          class="input">
+                  </div>
+
+                  <div class="input-field">
+                      <input type="submit" class="submit">
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+</form>
+
+
+
+
+
+
+
+  <!-- <form method="post" >
+            {% csrf_token %}
+          
+            <h1 id="reg">Registration Form</h1>
+
+             <div>
+              {% for message in messages %}
+              <p class="text-danger">{{message}}</p>
+              {% endfor %}
+            </div> 
+           
+            <input id="input" placeholder="First name" type="text" name="first_name" autofocus><br>
+            <input placeholder="Last name" type="text" name="last_name" ><br>
+            <input placeholder="Phone number" type="number" name="phone" ><br>
+            
+            <input placeholder="email:abc@gmail.com"type="email" name="email" ><br>
+        
+            <input placeholder="Date of birth" type="date" name="date_of_birth" ><br>
+          
+            <select name="course">
+              <option>Select ur course </option>
+              <option>Foundation level</option>
+              <option>Advanced/Master level</option>
+            </select>
+            <input placeholder=" Highest Qualification" type="text" name="qualification" ><br>
+            <input placeholder="Marks in percentage (*optional) " type="number" name="mark1" ><br>
+          
+            <input placeholder="Address" type="text" name="address" ><br>
+            <input placeholder="Parent name" type="text" name="parent_name" ><br>
+            <input placeholder="Parent number" type="number" name="parent_number" ><br>
+            <input placeholder="Parent occupation" type="text" name="parent_occupation" required><br>
+        
+        
+            <button style="background-color: rgb(45, 196, 45);" type="submit" >Submit</button>
+
+          </form>
+
+          <div id="popup" class="popup">
+            <span id="popup-text"></span>
+          </div> -->

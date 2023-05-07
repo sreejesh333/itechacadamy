@@ -1,0 +1,440 @@
+{% include "base.html" %}
+{% load static %}
+
+
+
+
+
+
+
+<div class="popup">
+  <div class="contentbox">
+    <div class="close">
+      <i class="bi bi-x-circle"></i>
+    </div>
+
+    <div class="form-container">
+      <h1 class="hlp" style="margin-left: 70px;">sign up now</h1>
+      <form method="post">
+        {% csrf_token %}
+
+
+        <div class="control1">
+            <label for="name" class="username1">Name</label>
+            <div class="userpop">
+            <i class="bi bi-person-fill"></i>
+            <input placeholder="Type  your name" type="text" name="start_name" autofocus required><br>
+          </div>
+        </div>
+
+
+        <div class="control1">
+            <label for="phnumber" class="phnumber">Phone</label>
+            <div class="userpop">
+            <i class="bi bi-telephone-fill"></i>
+            <input placeholder=" Type your phone number" type="number" name="start_phone" required><br>
+          </div>
+        </div>
+
+
+        <div class="control1">
+          <input type="submit" value="Submit">
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<script>
+
+  $(document).ready(function () {
+
+    setTimeout(showpopup, 1000);
+
+    function showpopup() {
+
+      var is_already_show = sessionStorage.getItem('alreadyShow');
+      if (is_already_show != 'alredy shown') {
+        sessionStorage.setItem('alreadyShow', 'alredy shown');
+        $(".popup").show();
+      } else {
+        console.log(is_already_show)
+      }
+    }
+
+    $(".close").click(function () {
+      $(".popup").hide();
+
+    })
+  })
+
+</script>
+
+<section id="home">
+  <div class="images">
+    <img class="display-image" src="{% static 'image/pic122.jpg' %}">
+    <div class="txt">
+      <h1 class="display-text"><strong> Your Career <span id="nxt"> to the Next Level...</span> </strong></h1>
+      <p class="touch">Touching Lives Transforming Society !</p>
+      <a class="button1" href="#">Syllabus</a>
+      <a class="button2" href="{% static 'pdfs/Brochure Itech acadamy.pdf'  %}" target="_blank">Brochure</a>
+    </div>
+
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-container">
+    <div class="about-image">
+      <img class="image2" src="{% static 'image/pexels-mikael-blomkvist-6476254.jpg' %}">
+    </div>
+    <div class="about-text">
+      <h1 style="color: #1e1955;font-family: 'cinzel', serif;font-size: 50px;">About Us</h1>
+      <p class="abt-txt">Itech academy is a leading career-directing institute that supports students in their journey
+        of reaching their ultimate life goal. We have a team of expert career counsellors, who help the students in
+        fulfilling their dreams. Apart from including aptitude testing, educational counselling, and career guidance, we
+        also provide psychometric sessions to realise the inner talent of each student. </p>
+      <p class="abt-txt">Our team also helps the students to know about the possibilities and scope of various courses,
+        thus supporting them to unknot the confusions in their career.A team of career counsellors will help the
+        students to realise the strengths, interests, and abilities of students. </p>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="courses">
+  <div class="container-fluid">
+    <div class="row" style="width: 100%; height: auto;">
+      <div class="col-sm-12" style="color: white;text-align: center;margin-top:100px;">
+        <h1 style="font-family: 'cinzel', serif;font-size: 50px;">Courses</h1>
+        <p style="font-family:'Poppins', sans-serif;font-size:20px ;">We include all the basic training and educational
+          programs in our course which helps students in fetching their right profession. The modules will support in
+          acquiring the right knowledge and skills, thus boosting the confidence level. We utilise innovative career
+          guidance tools to provide world class training. Through our course we ensure each of the candidates are
+          receiving optimum support by acting as a pathfinder. The modules we provide can be followed by anyone even if
+          they are completely unaware of the career counselling field. We provide the apt training sessions to mend you
+          to an expert career counsellor.
+        </p>
+      </div>
+    </div>
+
+    <div class="row" id="card-space">
+      {% for card in card_element %}
+      <div class="col-sm-4" id="cards">
+
+        <div class="card-columns">
+
+          <div class="card" style="border-radius: 10px;">
+            <img class="card-img-top" src="{{ card.image.url }}"
+              style="max-height: 200px;max-width: 350px;border-radius: 7px;">
+            <div class="card-body">
+              <h3 class="card-heading" style="font-family:'cinzel', serif ;">{{card.heading}}</h3>
+              <p class="card-text" style="font-family:'Poppins', sans-serif;">{{card.text}}</p>
+              <div class="cards-title">
+                <h6 class="card-title">Fees:<del>{{card.fees}}Rs</del></h6>
+                <h6 class="card-title" id="offer-price">Offer price:{{card.offerfees}}Rs</h6>
+                <h6 class="card-title">Duration:{{card.duration}}hr</h6>
+              </div>
+
+
+
+              <div class="card-body1">
+                <a style="border: solid 0.5rem rgb(1, 1, 49) ;text-decoration: none;color:white ;background-color:rgb(1, 1, 49) ;border-radius: 7px;"
+                  href="{% url 'school:contact' %}">Register</a>
+                {% if card.heading == "Foundation Level" %}
+                <a style="border: solid 0.5rem rgb(1, 1, 49) ;text-decoration: none;color:white ;background-color:rgb(1, 1, 49) ;border-radius: 7px;"
+                  href="{% url 'school:abc' %}">Know more</a>
+                {% else %}
+                <a style="border: solid 0.5rem rgb(1, 1, 49) ;text-decoration: none;color:white ;background-color:rgb(1, 1, 49) ;border-radius: 7px;"
+                  href="{% url 'school:advanced' %}">Know more</a>
+                {% endif %}
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section id="services">
+
+  <h2 class="heading"> Services </h2>
+  <p id="service"> Lorem ipsum dolor sit amet consectetur adipisicing. </p>
+  <!-- Services Main Container Starts from Here -->
+  <div class="services-container">
+    <!-- Service Item starts from here -->
+    <div class="service-item">
+      <ul>
+        <li><i class="fa-solid fa-desktop"></i></li>
+      </ul>
+      <article>
+        <h2 class="service-heading"> Developing </h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe nemo eaque consequuntur quam
+          tenetur soluta eius ut!</p>
+      </article>
+    </div>
+    <!-- Service Item Ends here -->
+
+    <!-- Service Item starts from here -->
+    <div class="service-item">
+      <ul>
+        <li><i class="fa-solid fa-chart-line"></i></li>
+      </ul>
+      <article>
+        <h2 class="service-heading"> Analyzing </h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe nemo eaque consequuntur quam
+          tenetur soluta eius ut!</p>
+      </article>
+    </div>
+    <!-- Service Item Ends here -->
+
+    <!-- Service Item starts from here -->
+    <div class="service-item">
+      <ul>
+        <li><i class="fa-brands fa-telegram"></i></li>
+      </ul>
+      <article>
+        <h2 class="service-heading"> Sharing </h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe nemo eaque consequuntur quam
+          tenetur soluta eius ut!</p>
+      </article>
+    </div>
+    <!-- Service Item Ends here -->
+
+    <!-- Service Item starts from here -->
+    <div class="service-item">
+      <ul>
+        <li><i class="fa-solid fa-building-columns"></i></li>
+      </ul>
+      <article>
+        <h2 class="service-heading"> Banking </h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe nemo eaque consequuntur quamenetur soluta
+          eius ut!</p>
+      </article>
+    </div>
+    <!-- Service Item Ends here -->
+
+    <!-- Service Item starts from here -->
+    <div class="service-item">
+      <ul>
+        <li><i class="fa-sharp fa-solid fa-credit-card"></i></li>
+      </ul>
+      <article>
+        <h2 class="service-heading"> Cards </h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe nemo eaque consequuntur quam
+          tenetur soluta eius ut!</p>
+      </article>
+    </div>
+    <!-- Service Item Ends here -->
+
+    <!-- Service Item starts from here -->
+    <div class="service-item">
+      <ul>
+        <li><i class="fa-solid fa-bag-shopping"></i></li>
+      </ul>
+      <article>
+        <h2 class="service-heading"> Shoping </h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe nemo eaque consequuntur quam
+          tenetur soluta eius ut!</p>
+      </article>
+    </div>
+    <!-- Service Item Ends here -->
+</section>
+
+
+<section>
+  <div class="description">
+    <div class="description-image">
+      <img class="img-fluid" src="{% static 'image/pic16.jpg' %}">
+      <img class="img-fluid1" src="{% static 'image/pic1.jpg' %}">
+    </div>
+
+    <div class="description-text">
+      <h1 class="h1">Your Learning Capacity </h1>
+      <p class="main-para">You are so curious by nature. So your mind is always interested to learn
+        the answer for the question "why is it so ?" . The career and deeper this
+        type of answer you recieve, the greater your interest to learn and explore
+        the topic. You like to study theories and concepts which have popular
+        interests. You will learn easily even if the subject is difficult when it is
+        presented in a conceptual form. You are able to connect and produce
+        new information frm the ideas you learn. You can retain knowledge
+        remembered in this way for decades. You are able to memorize things
+        automatically although the amount of them is lower than from the
+        general memorizing way</p>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="mid-section">
+  <div class="section-item-container">
+    <div class="section-bg">
+      <img src="{% static 'image/pic25.jpg' %}" class="section-bg-image" alt="">
+    </div>
+    <div class="section-info">
+      <h1 class="title">Your Personality<span>ARCHITECT</span></h1>
+      <p class="info">Your personality is called 'Architect'. You are intelligent, informative, practical and like to
+        depend on your inner senses. You need everything to be in order and completed on time.You can design and analyze
+        visions for the mind and work like an architect. Visual thinker, innovator, creative planner, robotic mind
+        engineers, Brilliant strategists etc. You have high capabilities in thinking and intuition. You are able to
+        assume what may happen next through analyzing situations. You live in the world of ideas and planning.</p>
+    </div>
+  </div>
+
+
+
+  <div class="architect-card">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="architect-h1">How You Become <span id="arc">ARCHITECT</span></h1>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="row" id="crd">
+      <div class="col-sm-3">
+
+        <h1 class="card-heading">Introversion</h1>
+        <div class="product-card">
+          <img src="{% static 'image/introversion.jpg' %}" class="product-img" alt="">
+          <p class="product-name"> Introversion refers to the individual's orientation and source of energy what mainly
+            comes from the person's inner world.</p>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <h1 class="card-heading">Intuition</h1>
+        <div class="product-card">
+          <img src="{% static 'image/intiution.jpg' %}" class="product-img" alt="">
+          <p class="product-name">Intuition refers to the individual's perception and talking care of any information
+            what he or she recieves from the internal world.</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h1 class="card-heading">Thinking</h1>
+        <div class="product-card">
+          <img src="{% static 'image/thinking.jpg' %}" class="product-img" alt="">
+          <p class="product-name">Thinking refers individual's processing of information and taking The final decision
+            mainly by logical thoughts.</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h1 class="card-heading">Judging</h1>
+        <div class="product-card">
+          <img src="{% static 'image/judging.jpg' %}" class="product-img" alt="">
+          <p class="product-name">Judging refers individual's implementation of information and Adirect it through a
+            structured and organized way. </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row" id="row1">
+      <div class="col-sm-3">
+        <h1 class="card-heading">Extroversion</h1>
+        <div class="product-card">
+          <img src="product-1.png" class="product-img" alt="">
+          <p class="product-name">Extraversion refers to the individual's Orientation and source of energy what mainly
+            comes from the person's outer world.</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h1 class="card-heading">Sensing</h1>
+        <div class="product-card">
+          <img src="product-2.png" class="product-img" alt="">
+          <p class="product-name">Sensitive refers to the individual's perception And taking care of any Information
+            what he or she Recievs from the outer (sensing) world.</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h1 class="card-heading">Feeling</h1>
+        <div class="product-card">
+          <img src="product-3.png" class="product-img" alt="">
+          <p class="product-name">Feeling refers individual's processing of information and taking the Final decision
+            mainly by Felt emotions.</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <h1 class="card-heading">Perceiving</h1>
+        <div class="product-card">
+          <img src="product-4.png" class="product-img" alt="">
+          <p class="product-name">Perceiving refers individual Implemention of information And direct it through a
+            improvised and exploring way.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <section id="contact">
+
+
+      <div class="container-contact">
+        <h1 class="contact-h1">Contact Us</h1>
+        <div class="content">
+          <div class="left-side">
+            <div class="address details">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="topic">Address</div>
+              <div class="text-one">Makkolath Line</div>
+              <div class="text-two">Opposite Coronation Theatre</div>
+              <div class="text-three">Calicut,India</div>
+
+            </div>
+            <div class="phone details">
+              <i class="fas fa-phone-alt"></i>
+              <div class="topic">Phone</div>
+              <div class="text-one">+91 80899 08174</div>
+              <div class="text-two">+0495 4603443</div>
+
+            </div>
+
+          </div>
+          <div class="right-side">
+            <div class="topic-text">Get In Touch</div>
+            <p id="para">We appreciate your interest in Itech academy. Please find the contact details.</p>
+            <form action="#">
+              <div class="input-box">
+                <input type="text" placeholder="Enter your name">
+              </div>
+              <div class="input-box">
+                <input type="text" placeholder="Enter your email">
+              </div>
+              <div class="input-box message-box">
+                <input type="text" placeholder="Enter your comments">
+              </div>
+              <div class="button">
+                <input type="button" value="Send Now">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include "footer.html" %}
